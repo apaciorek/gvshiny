@@ -1,0 +1,68 @@
+
+fluidPage(
+  titlePanel(h1("Investigating the Impact of Gun Violence"), 
+             windowTitle = "mass shootings shiny"),
+  sidebarLayout(
+    #sidebarPanel(img(src='<handgun.png>',
+    #width='50%')),
+    sidebarPanel(
+      # drop down menu to filter data by year
+      selectizeInput('year','Year',
+                     choices=unique(maybe$Year)
+      ),
+      # slider to adjust x-axis on both plots
+      sliderInput(
+        inputId = "vic",
+        label = "Number of Victims",
+        min = 0,
+        max = 100,
+        value = 5
+      ),
+      
+      # link to gun violence archive (where data was sourced)
+      helpText(   a("Gun Violence Archive",
+                    href="https://www.gunviolencearchive.org/reports"))
+      
+    ),
+    
+    mainPanel(
+      
+      # first tab shows plots
+      tabsetPanel(
+        tabPanel("Plots", 
+                 fluidRow(
+                   column(5,plotOutput('injured')),
+                   column(7,plotOutput('killed'))
+                 )
+        ),
+        # looking closer at incidents with four injuries
+        tabPanel("More on Four", verbatimTextOutput("summary")#,
+                 # plotOutput("box")
+        ),
+        # third tab shows gun type distribution and link to site 
+        tabPanel("Gun Type", (img(src='handgun.png', 
+                                  width = "75%")),
+                 helpText(   a("Statista Site",
+                               href="https://www.statista.com/statistics/476409/mass-shootings-in-the-us-by-weapon-types-used/"))
+                 
+                 
+                 #(img(src ="handgun.png", width = "75%",
+                 #              href="https://www.google.com"))
+                 #(img(src='handgun.png', 
+                 #            width = "75%"))
+                 
+                 
+                 
+        ), 
+        
+        # fourth tab shows the data table
+        tabPanel("Data", tableOutput('data'))
+      )
+      
+      
+      
+    )
+  )
+)
+
+

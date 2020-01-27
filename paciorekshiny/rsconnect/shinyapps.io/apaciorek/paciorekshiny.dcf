@@ -1,0 +1,12 @@
+name: paciorekshiny
+title: paciorekshiny
+username:
+account: apaciorek
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1706748
+bundleId: 2754962
+url: https://apaciorek.shinyapps.io/paciorekshiny/
+when: 1580088325.6398
+asMultiple: FALSE
+asStatic: FALSE
